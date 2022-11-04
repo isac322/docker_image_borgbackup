@@ -14,7 +14,8 @@ RUN apt-get install -y --no-install-recommends \
     patchelf \
     libfuse-dev fuse
 RUN if ! [ "$(uname -m)" = 'x86_64' ]; then apt-get install -y --no-install-recommends cargo; fi
-RUN env MAKEFLAGS="-j$(nproc)" pip install --root-user-action=ignore -U pkgconfig pyinstaller scons staticx wheel
+RUN env MAKEFLAGS="-j$(nproc)" pip install --root-user-action=ignore -U scons
+RUN env MAKEFLAGS="-j$(nproc)" pip install --root-user-action=ignore -U pkgconfig pyinstaller staticx wheel
 
 RUN git clone --depth 1 -b ${VERSION} https://github.com/borgbackup/borg.git
 WORKDIR borg

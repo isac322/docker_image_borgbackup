@@ -16,7 +16,7 @@ jobs:
       - name: Get borg version
         id: borg_version
         run: |
-          VERSION=$(python -c "from pkg_resources import parse_requirements; print(next(filter(lambda r: r.name == 'borg', parse_requirements(open('requirements.txt').read()))).specs[0][1])")
+          VERSION=$(python -c "from pkg_resources import parse_requirements; print(next(filter(lambda r: r.name == 'borgbackup', parse_requirements(open('requirements.txt').read()))).specs[0][1])")
           echo $VERSION
           echo "name=version::${VERSION}" >> $GITHUB_OUTPUT
 

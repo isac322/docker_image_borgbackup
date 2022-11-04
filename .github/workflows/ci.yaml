@@ -7,10 +7,10 @@ on:
       - requirements.txt
 
 jobs:
-  borg_version:
+  build_image:
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.borg_version.outputs.version }}
+    env:
+      PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7
     steps:
       - uses: actions/checkout@v3
       - name: Get borg version
@@ -18,15 +18,7 @@ jobs:
         run: |
           VERSION=$(python -c "from pkg_resources import parse_requirements; print(next(filter(lambda r: r.name == 'borgbackup', parse_requirements(open('requirements.txt').read()))).specs[0][1])")
           echo $VERSION
-          echo "name=version::${VERSION}" >> $GITHUB_OUTPUT
-
-  build_image:
-    runs-on: ubuntu-latest
-    needs: borg_version
-    env:
-      PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7
-    steps:
-      - uses: actions/checkout@v3
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
         with:
@@ -40,6 +32,6 @@ jobs:
         with:
           push: false
           build-args: |
-            VERSION=${{ needs.borg_version.outputs.version }}
+            VERSION=${{ steps.borg_version.outputs.version }}
           platforms: ${{ env.PLATFORMS }}
           cache-from: type=gha

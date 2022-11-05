@@ -19,7 +19,7 @@ jobs:
           echo $VERSION
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
-      - uses: marvinpinto/action-automatic-releases@v1
+      - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: ${{ steps.borg_version.outputs.version }}

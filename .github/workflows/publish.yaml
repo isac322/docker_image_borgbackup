@@ -24,9 +24,11 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-      #          labels: |
-      #            maintainer=${{ env.DOCKERHUB_USERNAME }}
-      #            org.opencontainers.image.title=borgbackup
+          labels: |
+            maintainer=${{ env.DOCKERHUB_USERNAME }}
+            org.opencontainers.image.title=borgbackup
+            org.opencontainers.image.source=https://github.com/borgbackup/borg
+            org.opencontainers.image.documentation=https://www.borgbackup.org
       - name: Set up QEMU
         id: qemu
         uses: docker/setup-qemu-action@v2

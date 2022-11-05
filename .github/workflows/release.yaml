@@ -4,10 +4,7 @@ name: release
 on:
   push:
     branches:
-      - "master"
-    paths:
-      - Dockerfile
-      - requirements.txt
+      - master
 
 jobs:
   release:

@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 
-FROM python:3.11-slim as builder
+FROM python:3.10-slim as builder
 
 ARG VERSION
 ENV PYTHON_CONFIGURE_OPTS="--enable-shared" DEBIAN_FRONTEND=noninteractive

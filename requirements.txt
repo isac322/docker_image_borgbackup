@@ -1,1 +1,1 @@
-borgbackup==1.2.8
+borgbackup==1.2.9

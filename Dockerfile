@@ -29,7 +29,7 @@ RUN env MAKEFLAGS="-j$(nproc)" pyinstaller --clean scripts/borg.exe.spec
 RUN env MAKEFLAGS="-j$(nproc)" staticx --strip dist/borg.exe dist/borg
 
 
-FROM gcr.io/distroless/base-debian11
+FROM gcr.io/distroless/base-debian13
 MAINTAINER 'Byeonghoon Isac Yoo <bhyoo@bhyoo.com>'
 
 COPY --link=true --from=builder /borg/dist/borg /usr/local/bin/borg

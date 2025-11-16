@@ -9,6 +9,7 @@ RUN apk add --update \
     git \
     gcc musl-dev linux-headers acl-dev patchelf \
     openssl-dev \
+    lz4-dev zstd-dev xxhash-dev \
     fuse3-dev
 RUN ARCH=$(uname -m); \
     if [ "$ARCH" != "x86_64" ] && [ "$ARCH" != "aarch64" ]; then \
@@ -23,7 +24,6 @@ WORKDIR /borg
 
 RUN env MAKEFLAGS="-j$(nproc)" pip install --root-user-action=ignore -r requirements.d/development.lock.txt
 RUN env MAKEFLAGS="-j$(nproc)" python setup.py clean
-RUN env MAKEFLAGS="-j$(nproc)" python setup.py clean2
 RUN env MAKEFLAGS="-j$(nproc)" pip install -e .[pyfuse3]
 RUN sed -i -E 's/strip=False/strip=True/' scripts/borg.exe.spec
 RUN sed -i -E 's/borg.exe/borg/' scripts/borg.exe.spec

@@ -9,8 +9,8 @@
 [![PyPI](https://img.shields.io/pypi/v/borgbackup?label=borgbackup&logo=python&style=flat-square)][2]
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/borgbackup?logo=python&style=flat-square)][2]
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/isac322/docker_image_borgbackup/master?logo=github&style=flat-square)][3]
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/isac322/docker_image_borgbackup/publish?logo=github&style=flat-square)][3]
-[![Dependabpt Status](https://flat.badgen.net/github/dependabot/isac322/docker_image_borgbackup?icon=github)][3]
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/isac322/docker_image_borgbackup/publish.yaml?branch=master&style=flat-square&logo=github)
+][3]
 
 > ### Images automatically follow upstream via dependabot. 
 
@@ -30,4 +30,4 @@ Default Entrypoint of image is `borg`.
 
 `docker run --rm -ti isac322/borgbackup:1 debug info` will print borg version and debugging infomation.
 
-Please refer [official blackd document](https://github.com/psf/black#blackd)
+Please refer [official borgbackup document](https://borgbackup.readthedocs.io/en/stable/)

@@ -9,13 +9,13 @@ jobs:
     env:
       PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v40
+        uses: tj-actions/changed-files@v47
         with:
           files: |
             Dockerfile
@@ -43,7 +43,7 @@ jobs:
 
       - name: Build
         if: steps.changed-files.outputs.any_changed == 'true'
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: false
           build-args: |

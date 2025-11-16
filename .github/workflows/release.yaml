@@ -29,3 +29,4 @@ jobs:
           prerelease: false
           generate_release_notes: true
           make_latest: true
+          token: ${{ secrets.GHA_PAT }}

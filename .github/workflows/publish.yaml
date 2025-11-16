@@ -26,7 +26,6 @@ jobs:
             maintainer=${{ env.DOCKERHUB_USERNAME }}
             org.opencontainers.image.title=borgbackup
             org.opencontainers.image.source=https://github.com/borgbackup/borg
-            org.opencontainers.image.documentation=https://borgbackup.readthedocs.io/en/{{version}}/
       - name: Set up QEMU
         id: qemu
         uses: docker/setup-qemu-action@v3
@@ -50,6 +49,8 @@ jobs:
             VERSION=${{ steps.docker_meta.outputs.version }}
           platforms: ${{ env.PLATFORMS }}
           tags: ${{ steps.docker_meta.outputs.tags }}
-          labels: ${{ steps.docker_meta.outputs.labels }}
+          labels: |
+            ${{ steps.docker_meta.outputs.labels }}
+            org.opencontainers.image.documentation=https://borgbackup.readthedocs.io/en/${{ steps.docker_meta.outputs.version }}/
           cache-from: type=gha
           cache-to: type=gha,mode=max

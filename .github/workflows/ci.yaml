@@ -31,7 +31,7 @@ jobs:
 
       - name: Set up QEMU
         if: steps.changed-files.outputs.any_changed == 'true'
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
         with:
           platforms: ${{ env.PLATFORMS }}
 

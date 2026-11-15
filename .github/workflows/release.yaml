@@ -23,10 +23,18 @@ jobs:
           echo $VERSION
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
+      - name: Create release app token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          permission-contents: write
+
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.borg_version.outputs.version }}
           prerelease: false
           generate_release_notes: true
           make_latest: true
-          token: ${{ secrets.GHA_PAT }}
+          token: ${{ steps.app-token.outputs.token }}
